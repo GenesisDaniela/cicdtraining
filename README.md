@@ -83,6 +83,20 @@ gcloud services enable run.googleapis.com artifactregistry.googleapis.com iam.go
 
 ---
 
+### Habilitar Vertex AI (Gemini)
+
+Los endpoints `/api/ai/*` usan Gemini. Habilita la API y da permiso a la cuenta que ejecuta Cloud Run:
+
+```cmd
+gcloud services enable aiplatform.googleapis.com --project=tidal-airway-514500-s5
+```
+
+```cmd
+gcloud projects add-iam-policy-binding tidal-airway-514500-s5 --member="serviceAccount:12740171038-compute@developer.gserviceaccount.com" --role="roles/aiplatform.user"
+```
+
+---
+
 ## Paso 3 — Crear Artifact Registry
 
 Repositorio Docker donde se almacenarán las imágenes:
@@ -324,8 +338,8 @@ gcloud run services add-iam-policy-binding mi-app --region=us-central1 --project
 
 Abre la URL en el navegador y deberías ver:
 
-```
-Hola desde Cloud Run 🚀
+```json
+{"status":"ok","service":"cicdtraining","version":"mi-app-00001-9tv","timestamp":"..."}
 ```
 
 Ver logs del servicio:
