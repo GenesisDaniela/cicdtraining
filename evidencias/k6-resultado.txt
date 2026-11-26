@@ -1,0 +1,66 @@
+k6 run K6/load-test.js
+
+         /\      Grafana   /‾‾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/
+
+
+     execution: local
+        script: K6/load-test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 200 max VUs, 5m0s max duration (incl. graceful stop):
+              * default: Up to 200 looping VUs for 4m30s over 5 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS
+
+    error_rate
+    ✓ 'rate<0.005' rate=0.00%
+
+    http_req_duration
+    ✗ 'p(95)<500' p(95)=736.92ms
+
+    http_req_failed
+    ✗ 'rate<0.005' rate=20.00%
+
+
+  █ TOTAL RESULTS
+
+    checks_total.......: 28328   104.204902/s
+    checks_succeeded...: 100.00% 28328 out of 28328
+    checks_failed......: 0.00%   0 out of 28328
+
+    ✓ work 200
+    ✓ work slow 200
+    ✓ error 500
+
+    CUSTOM
+    error_rate.....................: 0.00%  0 out of 28328
+    latency_ms.....................: avg=477.516218 min=205.289  med=614.7575 max=1043.344 p(90)=732.1416 p(95)=739.3004
+
+    HTTP
+    http_req_duration..............: avg=427.58ms   min=205.28ms med=234.93ms max=1.04s    p(90)=729.88ms p(95)=736.92ms
+      { expected_response:true }...: avg=477.51ms   min=205.28ms med=614.75ms max=1.04s    p(90)=732.14ms p(95)=739.3ms
+    http_req_failed................: 20.00% 5666 out of 28328
+    http_reqs......................: 28328  104.204902/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.07s      min=2.92s    med=3.14s    max=4.1s     p(90)=3.2s     p(95)=3.22s
+    iterations.....................: 11331  41.681225/s
+    vus............................: 7      min=2             max=200
+    vus_max........................: 200    min=200           max=200
+
+    NETWORK
+    data_received..................: 8.4 MB 31 kB/s
+    data_sent......................: 2.5 MB 9.2 kB/s
+
+
+
+
+running (4m31.8s), 000/200 VUs, 11331 complete and 0 interrupted iterations
+default ✓ [======================================] 000/200 VUs  4m30s
+ERRO[0272] thresholds on metrics 'http_req_duration, http_req_failed' have been crossed
