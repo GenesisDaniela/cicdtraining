@@ -26,7 +26,7 @@ export const options = {
 };
 
 //const BASE_URL = 'https://mi-app-1014662180227.us-central1.run.app';
-const BASE_URL = 'https://mi-app-622078306811.us-central1.run.app';
+const BASE_URL = 'https://mi-app-d7fucdl7ma-uc.a.run.app';
 
 
 // ─── ESCENARIO PRINCIPAL ───────────────────────────────────────────
