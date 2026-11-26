@@ -115,7 +115,7 @@ const { GoogleGenAI } = require('@google/genai');
 
 const ai = new GoogleGenAI({
   vertexai: true,
-  project: 'cicdtraining-498421',
+  project: 'tidal-airway-514500-s5',
   location: 'global',
 });
 
