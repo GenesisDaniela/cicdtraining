@@ -25,7 +25,9 @@ export const options = {
   },
 };
 
+//const BASE_URL = 'https://mi-app-1014662180227.us-central1.run.app';
 const BASE_URL = 'https://mi-app-622078306811.us-central1.run.app';
+
 
 // ─── ESCENARIO PRINCIPAL ───────────────────────────────────────────
 export default function () {
@@ -38,7 +40,7 @@ export default function () {
   sleep(0.5);
 
   // 20% tráfico lento
-  const r2 = http.get(`${BASE_URL}/api/work?ms=400`);
+  const r2 = http.get(`${BASE_URL}/api/work?ms=600`);
   check(r2, { 'work slow 200': (r) => r.status === 200 });
   errorRate.add(r2.status !== 200);
   latencyTrend.add(r2.timings.duration);
@@ -46,7 +48,7 @@ export default function () {
   sleep(0.5);
 
   // 10% errores simulados
-  if (Math.random() < 0.1) {
+  if (Math.random() < 0.5) {
     const r3 = http.get(`${BASE_URL}/api/work?ms=100&fail=true`);
     check(r3, { 'error 500': (r) => r.status === 500 });
     errorRate.add(r3.status !== 500);
